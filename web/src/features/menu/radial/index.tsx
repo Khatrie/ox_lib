@@ -8,7 +8,7 @@ import { useLocales } from '../../../providers/LocaleProvider';
 import LibIcon from '../../../components/LibIcon';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   wrapper: {
     position: 'absolute',
     top: '50%',
@@ -31,7 +31,7 @@ const useStyles = createStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    background: '#495057',
+    backgroundColor: theme.colors.dark[6],
     borderRadius: '10px',
     transition: 'background 0.3s ease',
     border: '1px solid #0099ad',
