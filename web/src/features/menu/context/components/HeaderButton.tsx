@@ -18,6 +18,10 @@ const useStyles = createStyles((theme, params: { canClose?: boolean }) => ({
     textAlign: 'center',
     justifyContent: 'center',
     padding: 2,
+    background: 'rgb(186, 81, 84)',
+    '&:hover': {
+      background: 'radial-gradient(#0099adda 0%, #0099ad79 100%);',
+    },
   },
   root: {
     border: 'none',
