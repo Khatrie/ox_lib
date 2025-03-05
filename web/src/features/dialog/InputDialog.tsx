@@ -1,4 +1,4 @@
-import { Button, Group, Modal, Stack } from '@mantine/core';
+import { Button, Group, Modal, Stack, createStyles, useMantineTheme } from '@mantine/core';
 import React from 'react';
 import { useNuiEvent } from '../../hooks/useNuiEvent';
 import { useLocales } from '../../providers/LocaleProvider';
@@ -23,7 +23,45 @@ export type FormValues = {
   }[];
 };
 
+const useStyles = createStyles((theme) => ({
+  label: {
+    color: theme.colors.pink[5],
+    fontWeight: 500,
+  },
+  description: {
+    color: theme.colors.pink[5],
+    /* fontSize: theme.fontSizes.sm, */
+  },
+  button_confirm: {
+    background: '#0099ad',
+    color: theme.colors.white[5],
+    transition: 'background-color 0.3s ease, color 0.3s ease',
+    '&:hover': {
+      backgroundColor: theme.colors.green[5],
+      color: theme.colors.black[5],
+    },
+  },
+  button_cancel: {
+    boxShadow: 'inset 0px 0px 40px #B32C2CFF',
+    color: theme.colors.white[5],
+    transition: 'background-color 0.3s ease, color 0.3s ease',
+    '&:hover': {
+      backgroundColor: theme.colors.red[5],
+      color: theme.colors.white[5],
+    },
+  },
+  gradientLine: {
+    height: '3px',
+    width: '60%',
+    background: '#0099ad',
+    margin: `${theme.spacing.xs} auto`,
+    marginBottom: theme.spacing.md,
+  },
+}));
+
 const InputDialog: React.FC = () => {
+  const { classes } = useStyles();
+  const theme = useMantineTheme();
   const [fields, setFields] = React.useState<InputProps>({
     heading: '',
     rows: [{ type: 'input', label: '' }],
@@ -104,13 +142,29 @@ const InputDialog: React.FC = () => {
         closeOnEscape={fields.options?.allowCancel !== false}
         closeOnClickOutside={false}
         size="xs"
-        styles={{ title: { textAlign: 'center', width: '100%', fontSize: 18 } }}
+        styles={{
+          title: {
+            textAlign: 'center',
+            width: '100%',
+            fontSize: 20,
+            fontWeight: 700,
+            color: theme.colors.white[5],
+          },
+          modal: {
+            border: `1px solid ${theme.colors.grey[5]}`,
+            backgroundColor: theme.colors.black2[5],
+            color: theme.colors.white[5],
+          },
+        }}
         title={fields.heading}
         withCloseButton={false}
         overlayOpacity={0.5}
         transition="fade"
         exitTransitionDuration={150}
       >
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className={classes.gradientLine} />
+      </div>
         <form onSubmit={onSubmit}>
           <Stack>
             {fieldForm.fields.map((item, index) => {
@@ -151,18 +205,21 @@ const InputDialog: React.FC = () => {
                 </React.Fragment>
               );
             })}
-            <Group position="right" spacing={10}>
+            <Group position="left" spacing={10}>
               <Button
-                uppercase
+              variant="light"
+              className={classes.button_confirm}
+              type="submit">
+                {locale.ui.confirm}
+              </Button>
+              <Button
                 variant="default"
+                className={classes.button_cancel}
                 onClick={() => handleClose()}
                 mr={3}
                 disabled={fields.options?.allowCancel === false}
               >
                 {locale.ui.cancel}
-              </Button>
-              <Button uppercase variant="light" type="submit">
-                {locale.ui.confirm}
               </Button>
             </Group>
           </Stack>

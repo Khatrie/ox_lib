@@ -23,25 +23,27 @@ const useStyles = createStyles((theme, params: { position: 'middle' | 'bottom'; 
   },
   progress: {
     '> svg > circle:nth-child(1)': {
-      stroke: theme.colors.dark[5],
+      stroke: theme.colors.dark[5], // Background circle color
     },
-    // Scuffed way of grabbing the first section and animating it
     '> svg > circle:nth-child(2)': {
       transition: 'none',
       animation: `${progressCircle} linear forwards`,
       animationDuration: `${params.duration}ms`,
+      stroke: '#0099adda',
     },
   },
   value: {
     textAlign: 'center',
-    fontFamily: 'Roboto Mono',
+    fontFamily: 'Montserrat',
+    fontWeight: 600,
     textShadow: theme.shadows.sm,
-    color: theme.colors.gray[3],
+    color: theme.colors.white[5],
   },
   label: {
     textAlign: 'center',
+    fontWeight: 500,
     textShadow: theme.shadows.sm,
-    color: theme.colors.gray[3],
+    color: theme.colors.white[5],
     height: 25,
   },
   wrapper: {
@@ -94,6 +96,15 @@ const CircleProgressbar: React.FC = () => {
               label={<Text className={classes.value}>{value}%</Text>}
             />
             {label && <Text className={classes.label}>{label}</Text>}
+            <svg width="0" height="0">
+              <defs>
+                {/* Honestly this is the best I can come up with */}
+                <linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="50" y2="100">
+                  <stop offset="0%" stopColor="#79B2FF" />
+                  <stop offset="100%" stopColor="#FF4F87" />
+                </linearGradient>
+              </defs>
+            </svg>
           </Stack>
         </ScaleFade>
       </Stack>

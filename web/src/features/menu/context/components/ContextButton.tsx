@@ -26,11 +26,13 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
   },
   button: {
     height: 'fit-content',
+    fontWeight: 500,
     width: '100%',
     padding: 10,
-    border: '1px solid #0099ad',
+    backgroundColor: params.readOnly ? 'rgba(44, 44, 44, 0.9)' : theme.colors.black2[5],
+    border: params.readOnly ? '1px solid #C1C1C1' : `1px solid ${theme.colors.grey[5]}`,
     '&:hover': {
-      boxShadow: 'inset 0px 0px 90px #0099ad',
+      boxShadow: 'inset 0px 0px 10px #0099ad',
       cursor: params.readOnly ? 'unset' : 'pointer',
     },
     '&:disabled': {
@@ -41,17 +43,20 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
     '&:active': {
       transform: params.readOnly ? 'unset' : undefined,
     },
-  },
+  },  
   iconImage: {
     maxWidth: '25px',
+    
   },
   description: {
-    color: params.disabled ? theme.colors.dark[0] : 'white',
+    color: '#E7E7E7FF',
     fontSize: 12,
+    fontWeight: 400,
+    
   },
   dropdown: {
     padding: 10,
-    color: theme.colors.dark[0],
+    color: theme.colors.white[5],
     fontSize: 14,
     maxWidth: 256,
     width: 'fit-content',
@@ -122,7 +127,7 @@ const ContextButton: React.FC<{
                             icon={button.icon as IconProp}
                             fixedWidth
                             size="lg"
-                            style={{ color: button.iconColor }}
+                            style={{ color: '#0099ad', }}
                             animation={button.iconAnimation}
                           />
                         )}
