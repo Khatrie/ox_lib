@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url("https://use.typekit.net/wxh5ury.css");
 @import url("https://use.typekit.net/qgr5ebd.css");
 
@@ -13,7 +14,7 @@ html {
 body {
   background: none !important;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -52,13 +53,33 @@ code {
 }
 
 .toast-inform {
-  background-color: #2980b9;
+  background-color: #2B78FC;
 }
 
 .toast-success {
-  background-color: #27ae60;
+  background-color: #06CE6B;
 }
 
 .toast-error {
-  background-color: #c0392b;
+  background-color: #fe2436;
+}
+
+.mantine-InputWrapper-label,
+.mantine-TimeInput-label {
+  color: #F2F2F2;
+}
+
+.mantine-Input-input,
+.mantine-TextInput-input {
+  background-color: #242424;
+  color: #C1C1C1;
+  font-size: 16px;
+  border: none,
+}
+
+.mantine-InputWrapper-description,
+.mantine-TextInput-description,
+.mantine-Checkbox-label {
+  color: #F2F2F2;
+  border: none,
 }

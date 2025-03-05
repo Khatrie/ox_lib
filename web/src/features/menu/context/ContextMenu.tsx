@@ -22,6 +22,7 @@ const useStyles = createStyles((theme) => ({
     height: 580,
   },
   header: {
+    fontWeight: 700,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
@@ -30,10 +31,11 @@ const useStyles = createStyles((theme) => ({
   titleContainer: {
     borderRadius: 4,
     flex: '1 85%',
-    backgroundColor: theme.colors.dark[6],
+    backgroundColor: theme.colors.black2[5],
+    border: `1px solid ${theme.colors.grey[5]}`,
   },
   titleText: {
-    color: theme.colors.dark[0],
+    color: theme.colors.white[5],
     padding: 6,
     textAlign: 'center',
   },

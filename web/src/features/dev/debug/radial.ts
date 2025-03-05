@@ -8,13 +8,12 @@ export const debugRadial = () => {
       data: {
         items: [
           { icon: 'palette', label: 'Paint' },
+          { iconWidth: 35, iconHeight: 35, icon: 'https://icon-library.com/images/white-icon-png/white-icon-png-18.jpg', label: 'External icon'},
           { icon: 'warehouse', label: 'Garage' },
-          { icon: 'palette', label: 'Long Label Test' },
+          { icon: 'palette', label: 'Quite Long Text' },
           { icon: 'palette', label: 'Fahrzeuginteraktionen' },
-          { icon: 'palette', label: 'Fahrzeuginteraktionen 2' }, // Differentiated
-          { icon: 'https://i.imgur.com/6tPtRHU.gif', label: 'External Icon', iconWidth: 35, iconHeight: 35 },
-          { icon: 'palette', label: 'Paint (Duplicate)' },
-          { icon: 'ellipsis-h', label: 'More', isMore: true }, // Pagination test
+          { icon: 'palette', label: 'Fahrzeuginteraktionen' },
+          { icon: 'palette', label: 'Paint' },
         ],
       },
     },
