@@ -1,7 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export interface RadialMenuItem {
-  icon: string | IconProp;
+  icon: IconProp | `http${string}`; // Restricts `string` to URLs only
   label: string;
   isMore?: boolean;
   menu?: string;
