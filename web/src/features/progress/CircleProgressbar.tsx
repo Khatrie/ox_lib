@@ -5,7 +5,6 @@ import {fetchNui} from '../../utils/fetchNui';
 import ScaleFade from '../../transitions/ScaleFade';
 import type {CircleProgressbarProps} from '../../typings';
 
-// 33.5 is the r of the circle
 const progressCircle = keyframes({
   '0%': { strokeDasharray: `0, ${33.5 * 2 * Math.PI}` },
   '100%': { strokeDasharray: `${33.5 * 2 * Math.PI}, 0` },
@@ -23,7 +22,7 @@ const useStyles = createStyles((theme, params: { position: 'middle' | 'bottom'; 
   },
   progress: {
     '> svg > circle:nth-child(1)': {
-      stroke: theme.colors.dark[5], // Background circle color
+      stroke: theme.colors.dark[5],
     },
     '> svg > circle:nth-child(2)': {
       transition: 'none',
