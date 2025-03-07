@@ -8,17 +8,16 @@ import type { NotificationProps } from '../../typings';
 import MarkdownComponents from '../../config/MarkdownComponents';
 import LibIcon from '../../components/LibIcon';
 
+// Define styles for the notification container
 const useStyles = createStyles((theme) => ({
   container: {
     width: 300,
     height: 'fit-content',
-    backgroundColor: theme.colors.black2[5],
     color: theme.colors.dark[0],
     padding: 12,
     border: `1px solid ${theme.colors.grey[5]}`,
     borderRadius: theme.radius.sm,
     fontFamily: 'Montserrat',
-    boxShadow: theme.shadows.sm,
   },
   title: {
     fontWeight: 700,
@@ -38,6 +37,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+// Define animations for showing/hiding notifications
 const createAnimation = (from: string, to: string, visible: boolean) => keyframes({
   from: {
     opacity: visible ? 0 : 1,
@@ -50,14 +50,14 @@ const createAnimation = (from: string, to: string, visible: boolean) => keyframe
 });
 
 const getAnimation = (visible: boolean, position: string) => {
-  const animationOptions = visible ? '0.2s ease-out forwards' : '0.4s ease-in forwards'
+  const animationOptions = visible ? '0.2s ease-out forwards' : '0.4s ease-in forwards';
   let animation: { from: string; to: string };
 
   if (visible) {
-    animation = position.includes('bottom') ? { from: 'Y(30px)', to: 'Y(0px)' } : { from: 'Y(-30px)', to:'Y(0px)' };
+    animation = position.includes('bottom') ? { from: 'Y(30px)', to: 'Y(0px)' } : { from: 'Y(-30px)', to: 'Y(0px)' };
   } else {
     if (position.includes('right')) {
-      animation = { from: 'X(0px)', to: 'X(100%)' }
+      animation = { from: 'X(0px)', to: 'X(100%)' };
     } else if (position.includes('left')) {
       animation = { from: 'X(0px)', to: 'X(-100%)' };
     } else if (position === 'top-center') {
@@ -69,13 +69,45 @@ const getAnimation = (visible: boolean, position: string) => {
     }
   }
 
-  return `${createAnimation(animation.from, animation.to, visible)} ${animationOptions}`
+  return `${createAnimation(animation.from, animation.to, visible)} ${animationOptions}`;
 };
 
+// Animation for the duration circle
 const durationCircle = keyframes({
   '0%': { strokeDasharray: `0, ${15.1 * 2 * Math.PI}` },
   '100%': { strokeDasharray: `${15.1 * 2 * Math.PI}, 0` },
 });
+
+// Define typeStyles with an index signature to allow dynamic keys
+interface TypeStyles {
+  [key: string]: {
+    background: string;
+    boxShadow: string;
+  };
+}
+
+const typeStyles: TypeStyles = {
+  error: {
+    background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.96) 0%, rgba(14, 15, 19, 0.96) 100%)',
+    boxShadow: 'inset 0px 0px 72px rgba(185, 65, 65, 0.25)',
+  },
+  success: {
+    background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.96) 0%, rgba(14, 15, 19, 0.96) 100%)',
+    boxShadow: 'inset 0px 0px 72px rgba(0, 248, 185, 0.25)',
+  },
+  warning: {
+    background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.96) 0%, rgba(14, 15, 19, 0.96) 100%)',
+    boxShadow: 'inset 0px 0px 72px rgba(185, 159, 65, 0.25)',
+  },
+  info: {
+    background: '#283047f0',
+    boxShadow: 'inset 0px 0px 72px #283047f0',
+  },
+  default: {
+    background: '#283047f0',
+    boxShadow: 'inset 0px 0px 72px #283047f0',
+  },
+};
 
 const Notifications: React.FC = () => {
   const { classes } = useStyles();
@@ -92,9 +124,9 @@ const Notifications: React.FC = () => {
 
     data.showDuration = data.showDuration !== undefined ? data.showDuration : true;
 
-    if (toastId) setToastKey(prevKey => prevKey + 1);
+    if (toastId) setToastKey((prevKey) => prevKey + 1);
 
-    // Backwards compat with old notifications
+    // Backwards compatibility for old notification positions
     switch (position) {
       case 'top':
         position = 'top-center';
@@ -104,6 +136,7 @@ const Notifications: React.FC = () => {
         break;
     }
 
+    // Set default icon based on type
     if (!data.icon) {
       switch (data.type) {
         case 'error':
@@ -121,33 +154,26 @@ const Notifications: React.FC = () => {
       }
     }
 
+    // Set default icon color based on type
     if (!data.iconColor) {
-      switch (data.type) {
-        case 'error':
-          iconColor = 'red.5';
-          break;
-        case 'success':
-          iconColor = 'green.5';
-          break;
-        case 'warning':
-          iconColor = 'orange.5';
-          break;
-        default:
-          iconColor = 'blue.5';
-          break;
-      }
+      iconColor = '#0099ad';
     } else {
       iconColor = tinycolor(data.iconColor).toRgbString();
     }
-    
+
+    // Determine the type for typeStyles
+    const type = data.type || 'default';
+
     toast.custom(
       (t) => (
         <Box
           sx={{
             animation: getAnimation(t.visible, position),
+            background: typeStyles[type].background,
+            boxShadow: typeStyles[type].boxShadow,
             ...data.style,
           }}
-          className={`${classes.container}`}
+          className={classes.container}
         >
           <Group noWrap spacing={12}>
             {data.icon && (
