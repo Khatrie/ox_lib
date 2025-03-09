@@ -17,34 +17,54 @@ const useStyles = createStyles((theme) => ({
   container: {
     position: 'absolute',
     top: '15%',
-    right: '25%',
-    width: 320,
-    height: 580,
+    right: '5%',
+    width: 380,
+    height: 600,
+    zIndex: 112,
   },
   header: {
-    fontWeight: 700,
-    justifyContent: 'center',
+    ustifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
-    gap: 6,
+    marginBottom: 20,
+    gap: 10,
+    
   },
   titleContainer: {
     borderRadius: 4,
     flex: '1 85%',
     backgroundColor: theme.colors.black2[5],
-    border: `1px solid ${theme.colors.grey[5]}`,
+    border: '0.11rem solid rgba(110, 110, 119, 0.925)',
   },
+
+  
+  gradientOverlay: {
+    content: '""',
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    background: 'linear-gradient(to right, rgba(133,133,133,0.10) 50%, rgba(133, 133, 133, 0.10) 12%, rgb(43, 44, 54) 100%)', // Semi-transparent black gradient from right to left
+    zIndex: 3,
+    display: 'none',
+    
+  },
+  gradientOverlayVisible: {
+    display: 'block',
+    
+  },
+
   titleText: {
-    color: theme.colors.white[5],
+    color: 'white',
     padding: 6,
     textAlign: 'center',
   },
   buttonsContainer: {
-    height: 560,
+    height: 600,
     overflowY: 'scroll',
   },
   buttonsFlexWrapper: {
-    gap: 3,
+    gap: 6,
   },
 }));
 
@@ -87,6 +107,8 @@ const ContextMenu: React.FC = () => {
   });
 
   return (
+    <>
+    <Box className={`${classes.gradientOverlay} ${visible ? classes.gradientOverlayVisible : ''}`} />
     <Box className={classes.container}>
       <ScaleFade visible={visible}>
         <Flex className={classes.header}>
@@ -108,7 +130,8 @@ const ContextMenu: React.FC = () => {
           </Stack>
         </Box>
       </ScaleFade>
-    </Box>
+      </Box>
+    </>
   );
 };
 
