@@ -30,7 +30,7 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
     width: '100%',
     padding: 10,
     backgroundColor: params.readOnly ? 'rgba(44, 44, 44, 0.9)' : theme.colors.black2[5],
-    border: params.readOnly ? '1px solid #C1C1C1' : `1px solid ${theme.colors.grey[5]}`,
+    border: '0.11rem solid rgba(110, 110, 119, 0.925)',
     '&:hover': {
       boxShadow: 'inset 0px 0px 10px #0099ad',
       cursor: params.readOnly ? 'unset' : 'pointer',
@@ -38,7 +38,7 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
     '&:disabled': {
       color: 'white',
       background: 'radial-gradient(rgba(70, 19, 12, 0.8) 0%,rgba(112, 45, 45) 100%);',
-      border: 'calc(0.092592592vh * 1.4) solid rgba(255, 255, 255, 0.15)',
+      border: '0.11rem solid rgba(110, 110, 119, 0.925)',
     },
     '&:active': {
       transform: params.readOnly ? 'unset' : undefined,
