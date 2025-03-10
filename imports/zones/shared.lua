@@ -312,8 +312,7 @@ local function setDebug(self, bool, colour)
         {
             r = glm.tointeger(colour?.r or self.debugColour?.r or 255),
             g = glm.tointeger(colour?.g or self.debugColour?.g or 42),
-            b = glm.tointeger(colour?.b or
-                self.debugColour?.b or 24),
+            b = glm.tointeger(colour?.b or self.debugColour?.b or 24),
             a = glm.tointeger(colour?.a or self.debugColour?.a or 100)
         } or nil
 

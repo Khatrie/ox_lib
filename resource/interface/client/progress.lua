@@ -157,6 +157,12 @@ local function startProgress(data)
         return false
     end
 
+    local actualDuration = GetGameTimer() - startTime + 100 -- give slight leeway
+
+    if actualDuration <= data.duration then
+        return false
+    end
+
     return true
 end
 
