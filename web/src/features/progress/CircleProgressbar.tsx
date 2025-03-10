@@ -33,7 +33,7 @@ const useStyles = createStyles((theme, params: { position: 'middle' | 'bottom'; 
   },
   value: {
     textAlign: 'center',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Roboto Mono',
     fontWeight: 600,
     textShadow: theme.shadows.sm,
     color: theme.colors.white[5],

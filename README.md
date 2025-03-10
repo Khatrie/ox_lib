@@ -1,6 +1,4 @@
 # ox_lib
-![image](https://github.com/user-attachments/assets/b5922128-b3a5-497e-8f08-db1e22787e7d)
-![image](https://github.com/user-attachments/assets/f6ea6799-3357-4398-9e10-ab40052b584f)
 
 A FiveM library and resource implementing reusable modules, methods, and UI elements.
 
