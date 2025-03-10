@@ -103,6 +103,10 @@ const typeStyles: TypeStyles = {
     background: '#283047f0',
     boxShadow: 'inset 0px 0px 72px #283047f0',
   },
+  inform: {
+    background: '#283047f0',
+    boxShadow: 'inset 0px 0px 72px #283047f0',
+  },
   default: {
     background: '#161616FF',
     boxShadow: 'none',
@@ -126,7 +130,6 @@ const Notifications: React.FC = () => {
 
     if (toastId) setToastKey((prevKey) => prevKey + 1);
 
-    // Backwards compatibility for old notification positions
     switch (position) {
       case 'top':
         position = 'top-center';
@@ -136,7 +139,6 @@ const Notifications: React.FC = () => {
         break;
     }
 
-    // Set default icon based on type
     if (!data.icon) {
       switch (data.type) {
         case 'error':
@@ -148,20 +150,24 @@ const Notifications: React.FC = () => {
         case 'warning':
           data.icon = 'circle-exclamation';
           break;
+        case 'inform':
+          data.icon = 'circle-info';
+          break;
+          case 'info':
+            data.icon = 'circle-info';
+            break;
         default:
           data.icon = 'circle-info';
           break;
       }
     }
 
-    // Set default icon color based on type
     if (!data.iconColor) {
       iconColor = '#0099ad';
     } else {
       iconColor = tinycolor(data.iconColor).toRgbString();
     }
 
-    // Determine the type for typeStyles
     const type = data.type || 'default';
 
     toast.custom(
