@@ -75,7 +75,7 @@ const useStyles = createStyles((theme) => ({
     WebkitMaskSize: '80px',
     WebkitMaskRepeat: 'no-repeat',
     '&:hover': {
-      backgroundColor: '#0099ad',
+      backgroundColor: '#7C1919FF',
     },
   },
   
